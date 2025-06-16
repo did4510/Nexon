@@ -79,8 +79,8 @@ A powerful and aesthetic Discord ticket bot with advanced features, AI integrati
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/nexon-support.git
-cd nexon-support
+git clone https://github.com/did4510/Nexon.git
+cd nexon
 ```
 
 2. Create a virtual environment:
@@ -181,4 +181,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Support
 
-For support, join our [Discord server](https://discord.gg/your-invite) or open an issue on GitHub.
+For support, join our [Discord server](https://discord.gg/) or open an issue on GitHub.
