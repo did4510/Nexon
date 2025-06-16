@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  bot:
+    build: .
+    container_name: nexon-support
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    env_file:
+      - .env
+    restart: unless-stopped
+    depends_on:
+      - db
+
+  # SQLite (default)
+  db:
+    image: postgres:15-alpine
+    container_name: nexon-db
+    environment:
+      POSTGRES_USER: ${DB_USER:-nexon}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-nexon}
+      POSTGRES_DB: ${DB_NAME:-nexon}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  # Uncomment for PostgreSQL
+  # db:
+  #   image: postgres:15-alpine
+  #   environment:
+  #     POSTGRES_USER: ${POSTGRES_USER:-postgres}
+  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+  #     POSTGRES_DB: ${POSTGRES_DB:-nexon_tickets}
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+
+  # Uncomment for MongoDB
+  # db:
+  #   image: mongo:6
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER:-admin}
+  #     MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD:-admin}
+  #   volumes:
+  #     - mongodb_data:/data/db
+  #   ports:
+  #     - "27017:27017"
+
+volumes:
+  postgres_data:
+  mongodb_data: 
